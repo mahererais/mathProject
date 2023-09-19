@@ -1,0 +1,21 @@
+.operator {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border: 1px solid black;
+
+    color: white;
+    text-decoration: none;
+
+    &:hover {
+        opacity: 0.9;
+    }
+}
+
+.operator:nth-of-type(n) {
+    background-color: #FF2C79;
+}
+.operator:nth-of-type(3n - 2) {
+    background-color:darkturquoise;
+}
