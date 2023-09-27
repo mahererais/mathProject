@@ -4,63 +4,59 @@ import { useNavigate, useParams } from "react-router-dom";
 import Button from "./Button/Button";
 import Screen from "./Screen/Screen";
 import Results from "./Results/Results";
+import { getRandomEquations, operatorSymbol } from "./Controller/Controller";
 
 enum GameMode {
-    end,
-    begin,
-    retry,
-    run,
-    pause,
+    end = 0 ,
+    begin = 1 ,
+    retry = 2,
+    run = 4 ,
+    pause = 8,
 }
 
 const Game : React.FC = () => {
 
-    const equations = [
-        "95 + 99",
-        "1 + 1",
-        "4 + 5",
-        "5 + 6",
-        "7 + 1",
-        "2 + 8",
-        "8 + 3",
-        "12 + 4",
+    // const equations = [
+    //     "95 + 99",
+    //     "1 + 1",
+    //     "4 + 5",
+    //     "5 + 6",
+    //     "7 + 1",
+    //     "2 + 8",
+    //     "8 + 3",
+    //     "12 + 4",
 
-    ];
+    // ];
 
+    
     const [userResult, setUserResult] = useState<string[]>([]);
     const [gameMode, setGameMode] = useState<GameMode>(GameMode.begin);
     const [screenValue, setScreenValue] = useState(""); 
     const [equationIndex, setEquationIndex] = useState(0); 
+    const [equations, setEquations] = useState<string[]>([]);
 
-
-    let {operator} = useParams();
+    const  {operator} = useParams();
     const navigate = useNavigate();
 
+    console.log(GameMode.pause)
+    
+    
     useEffect(() => {
         if (gameMode == GameMode.retry) {
             setUserResult([]);
             setScreenValue('');
             setEquationIndex(0);
         }
-        if (gameMode == (GameMode.begin || GameMode.retry))
-            setGameMode(GameMode.run);
+        if ((gameMode == GameMode.begin) || (gameMode == GameMode.retry)) {
+            setGameMode(GameMode.run)
+            setEquations(getRandomEquations(10, symbolOperator));
+            console.log(equations);
+        }
 
     }, [gameMode]);
 
+    const symbolOperator  = operatorSymbol(operator ?? "+");
 
-    operator = (() => {
-        
-        switch (operator) {
-            case "plus": return "+";
-            case "minus": return "-";
-            case "time": return "x";
-            case "divide": return "/";
-        
-            default:
-                return "unknow_operator";
-        }
-    })();
-    console.log(operator);
 
     const keydown: React.KeyboardEventHandler<HTMLDivElement> = (e) => {
         console.log(e.code);
@@ -95,6 +91,9 @@ const Game : React.FC = () => {
                 setScreenValue("");
                 break;
             case "OK": 
+                if (!screenValue.trim())
+                    return 
+
                 setScreenValue("");
                 setUserResult(prev =>  [...prev, screenValue]);
                 setEquationIndex(prev => prev + 1);

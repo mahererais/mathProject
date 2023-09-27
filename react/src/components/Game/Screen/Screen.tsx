@@ -11,7 +11,7 @@ const Screen: React.FC<Props> = ({value, equation}) => {
   return (
     <>
       <div className="screen">
-        <span className="left">{equation} = </span>
+        <span className="left">{equation?.replace("*", "x") ?? ""} = </span>
         <span className="right">{value}</span>
       </div>
     </>

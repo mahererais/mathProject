@@ -4,6 +4,8 @@
 
     position: absolute;
     background-color: #111;
+    font-size: 1.2rem;
+    font-weight: 600;
 
     inset: 3rem;
 
@@ -37,6 +39,14 @@
         span {
             background-color: #555;
             height: var(--span-heigth);
+
+            &.success {
+                color: greenyellow;
+            }
+
+            &.failed {
+                color: orange;
+            }
         }
     }
 

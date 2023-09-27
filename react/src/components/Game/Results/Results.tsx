@@ -22,17 +22,16 @@ const Results: React.FC<Props> = ({ equations, results, setGameMode}) => {
   const navigate = useNavigate();
 
 
-  const setColor:(index: number) => string =  (index: number) => {
+  const checkResultFor:(index: number) => boolean =  (index: number) => {
     const equation = equations[index];
     const result = results[index];
     console.log(equation);
     console.log(result);
-    if (eval(equation) == result) 
-      return "greenyellow";
-    else
-      return "red";
+
+    return eval(equation) == result 
   }
 
+  console.log("map index : " + equations);
   return (
     <div className="results_container">
       <div className="results_header">
@@ -41,10 +40,11 @@ const Results: React.FC<Props> = ({ equations, results, setGameMode}) => {
       </div>
       <div className="results_body">
         {equations.map((equation, index) => {
+          console.log("map index: " + index);
           return (
             <>
               <span key={index}>{equation}</span>
-              <span key={1000 + index} style={{color: setColor(index)}}>{results[index]}</span>
+              <span key={1000 + index} className={checkResultFor(index) ? "success" : "failed"}>{results[index]}</span>
             </>
           );
         })}

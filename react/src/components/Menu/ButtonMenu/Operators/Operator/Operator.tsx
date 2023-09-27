@@ -1,7 +1,7 @@
 import React from "react";
 import "./Operator.scss";
 import { Link } from "react-router-dom";
-
+import { operatorString } from "../../../../Game/Controller/Controller";
 
 type Props = {
     operator: string, 
@@ -10,17 +10,7 @@ type Props = {
 
 const Operator : React.FC<Props> = ({operator, mode}) => {
 
-    const operatorUrl = (() => {
-        switch (operator) {
-            case "+": return "plus";
-            case "-": return "minus";
-            case "x": return "time";
-            case "/": return "divide";
-        
-            default:
-                return "unknow_operator";
-        }
-    })();
+    const operatorUrl = operatorString(operator);
 
     return (
         <Link className="operator" to={`/${mode}/${operatorUrl}`}>{operator}</Link>
