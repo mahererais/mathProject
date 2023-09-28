@@ -6,6 +6,7 @@ use App\Repository\ScoreRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ScoreRepository::class)]
+#[ORM\HasLifecycleCallbacks]
 class Score
 {
     #[ORM\Id]
@@ -79,9 +80,10 @@ class Score
         return $this->createdAt;
     }
 
-    public function setCreatedAt(\DateTimeImmutable $createdAt): static
+    #[ORM\PrePersist]
+    public function setCreatedAt(): static
     {
-        $this->createdAt = $createdAt;
+        $this->createdAt = new \DateTimeImmutable;
 
         return $this;
     }

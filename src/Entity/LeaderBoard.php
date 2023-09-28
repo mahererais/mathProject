@@ -8,6 +8,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: LeaderBoardRepository::class)]
+#[ORM\HasLifecycleCallbacks]
 class LeaderBoard
 {
     #[ORM\Id]
@@ -26,6 +27,9 @@ class LeaderBoard
 
     #[ORM\OneToMany(mappedBy: 'leaderboard', targetEntity: Score::class, orphanRemoval: true)]
     private Collection $scores;
+
+    #[ORM\Column(length: 2)]
+    private ?string $operateur = null;
 
     public function __construct()
     {
@@ -54,9 +58,10 @@ class LeaderBoard
         return $this->createdAt;
     }
 
-    public function setCreatedAt(\DateTimeImmutable $createdAt): static
+    #[ORM\PrePersist]
+    public function setCreatedAt(): static
     {
-        $this->createdAt = $createdAt;
+        $this->createdAt = new \DateTimeImmutable;
 
         return $this;
     }
@@ -65,7 +70,8 @@ class LeaderBoard
     {
         return $this->updatedAt;
     }
-
+    
+    #[ORM\PreUpdate]
     public function setUpdatedAt(?\DateTimeImmutable $updatedAt): static
     {
         $this->updatedAt = $updatedAt;
@@ -99,6 +105,18 @@ class LeaderBoard
                 $score->setLeaderboard(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getOperateur(): ?string
+    {
+        return $this->operateur;
+    }
+
+    public function setOperateur(string $operateur): static
+    {
+        $this->operateur = $operateur;
 
         return $this;
     }
