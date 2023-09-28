@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
 
+#[Route('/api')]
 class ScoreController extends AbstractController
 {
     #[Route('/score', name: 'app_score')]
