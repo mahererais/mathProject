@@ -15,11 +15,11 @@ class LeaderBoard
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    #[Groups(["scores"])]
+    #[Groups(["scores", "leaderboards"])]
     private ?int $id = null;
 
-    #[ORM\Column(length: 32)]
-    #[Groups(["scores"])]
+    #[ORM\Column(length: 32, unique: true)]
+    #[Groups(["scores", "leaderboards"])]
     private ?string $title = null;
 
     #[ORM\Column]
@@ -32,6 +32,7 @@ class LeaderBoard
     private Collection $scores;
 
     #[ORM\Column(length: 2)]
+    #[Groups(["scores", "leaderboards"])]
     private ?string $operateur = null;
 
     public function __construct()

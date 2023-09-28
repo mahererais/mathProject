@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Repository\UserRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
@@ -19,6 +20,36 @@ class UserController extends AbstractController
         return $this->json(
             $users, 
             Response::HTTP_OK, 
+            [],
+            ["groups" => "users"]
         );
+    }
+
+    #[Route('/users/{username}', name: 'app_user_find')]
+    public function find(UserRepository $userRepository, string $username): JsonResponse
+    {
+        $user = $userRepository->findOneBy(["username" => $username]);
+
+        return $this->json(
+            $user, 
+            Response::HTTP_OK, 
+        );
+    }
+
+    #[Route('/users/delete/{username}', name: 'app_user_delete', methods: ["GET", "POST"])]
+    public function delete(UserRepository $userRepository, string $username, EntityManagerInterface $entityManager): JsonResponse
+    {
+        
+        $user = $userRepository->findOneBy(["username" => $username]);
+        if ($user) {
+            $entityManager->remove($user);
+            $entityManager->flush();
+            
+            return $this->json(
+                ["message" => "delete success"], 
+                Response::HTTP_OK, 
+            );
+        }
+
     }
 }
