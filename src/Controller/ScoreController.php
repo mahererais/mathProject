@@ -2,19 +2,26 @@
 
 namespace App\Controller;
 
+use App\Repository\ScoreRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[Route('/api')]
 class ScoreController extends AbstractController
 {
-    #[Route('/score', name: 'app_score')]
-    public function index(): JsonResponse
+    #[Route('/scores', name: 'app_score')]
+    public function index(ScoreRepository $scoreRepository): JsonResponse
     {
-        return $this->json([
-            'message' => 'Welcome to your new controller!',
-            'path' => 'src/Controller/ScoreController.php',
-        ]);
+
+        $scores = $scoreRepository->findAll();
+
+        return $this->json(
+            $scores, 
+            Response::HTTP_OK, 
+            [], 
+            ["groups" => "scores"]
+        );
     }
 }

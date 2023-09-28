@@ -2,19 +2,24 @@
 
 namespace App\Controller;
 
+use App\Repository\LeaderBoardRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[Route('/api')]
 class LeaderboardController extends AbstractController
 {
-    #[Route('/leaderboard', name: 'app_leaderboard')]
-    public function index(): JsonResponse
+    #[Route('/leaderboards', name: 'app_leaderboard')]
+    public function index(LeaderBoardRepository $leaderBoardRepository): JsonResponse
     {
-        return $this->json([
-            'message' => 'Welcome to your new controller!',
-            'path' => 'src/Controller/LeaderboardController.php',
-        ]);
+        $leaderboards = $leaderBoardRepository->findAll();
+        //dd($leaderboards);
+
+        return $this->json(
+            $leaderboards, 
+            Response::HTTP_OK,
+        );
     }
 }

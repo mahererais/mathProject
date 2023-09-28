@@ -6,6 +6,7 @@ use App\Repository\LeaderBoardRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: LeaderBoardRepository::class)]
 #[ORM\HasLifecycleCallbacks]
@@ -14,9 +15,11 @@ class LeaderBoard
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(["scores"])]
     private ?int $id = null;
 
     #[ORM\Column(length: 32)]
+    #[Groups(["scores"])]
     private ?string $title = null;
 
     #[ORM\Column]

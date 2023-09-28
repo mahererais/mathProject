@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\ScoreRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: ScoreRepository::class)]
 #[ORM\HasLifecycleCallbacks]
@@ -12,26 +13,33 @@ class Score
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(["scores"])]
     private ?int $id = null;
 
     #[ORM\Column]
+    #[Groups(["scores"])]
     private ?int $score = null;
 
     #[ORM\Column(length: 32)]
+    #[Groups(["scores"])]
     private ?string $timer = null;
 
     #[ORM\Column]
+    #[Groups(["scores"])]
     private array $equations = [];
 
     #[ORM\Column]
+    #[Groups(["scores"])]
     private ?\DateTimeImmutable $createdAt = null;
 
     #[ORM\ManyToOne(inversedBy: 'scores')]
     #[ORM\JoinColumn(nullable: false)]
+    #[Groups(["scores"])]
     private ?User $user = null;
 
     #[ORM\ManyToOne(inversedBy: 'scores')]
     #[ORM\JoinColumn(nullable: false)]
+    #[Groups(["scores"])]
     private ?LeaderBoard $leaderboard = null;
 
     public function getId(): ?int
