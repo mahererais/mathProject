@@ -84,6 +84,8 @@ class ScoreController extends AbstractController
             $score = $serializer->deserialize($content, Score::class, 'json');
         } catch (NotEncodableValueException $e) {
             return $this->json(["error" => "JSON INVALID", 'data' => $content], Response::HTTP_BAD_REQUEST);
+        } catch (Exception $e) {
+            return $this->json(["error" => "JSON INVALID", 'code' => $e->getCode(), 'message' => $e->getMessage(), ], Response::HTTP_BAD_REQUEST);
         }
 
         $errors = $validator->validate($score);
