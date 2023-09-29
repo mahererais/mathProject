@@ -35,8 +35,11 @@ class LeaderBoard
     #[Groups(["scores", "leaderboards"])]
     private ?string $operateur = null;
 
-    public function __construct()
+    public function __construct(?int $id = null)
     {
+        if ($id) {
+            $this->id = $id;
+        }
         $this->scores = new ArrayCollection();
     }
 

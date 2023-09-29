@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\ScoreRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ScoreRepository::class)]
 #[ORM\HasLifecycleCallbacks]
@@ -15,17 +16,35 @@ class Score
     #[ORM\Column]
     #[Groups(["scores"])]
     private ?int $id = null;
-
+    
     #[ORM\Column]
     #[Groups(["scores"])]
+    #[Assert\NotBlank(message: "le score ne pas être vide")]
+    #[Assert\Type(type: "int", message: "le score doit être un entier")]
     private ?int $score = null;
 
     #[ORM\Column(length: 32)]
     #[Groups(["scores"])]
+    #[Assert\NotBlank(message: "le timer ne pas être vide")]
+    #[Assert\Length(
+        max : 11,
+        min : 4,
+        minMessage : "erreur lors de l'ajout du timer (non respect des contraintes)",
+        maxMessage : "erreur lors de l'ajout du timer (non respect des contraintes)"
+        )]
     private ?string $timer = null;
 
     #[ORM\Column]
     #[Groups(["scores"])]
+    #[Assert\NotBlank(message: "il n'a pas de d'equation")]
+    #[Assert\Count(
+        min : 10,
+        minMessage : "vous devez avoir au moins 10 equations",
+        )]
+    #[Assert\Type(
+        type: 'array',
+        message: 'cette valeur {{ value }} is not a valid {{ type }}.'
+        )]
     private array $equations = [];
 
     #[ORM\Column]
