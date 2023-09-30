@@ -71,7 +71,7 @@ class Score
         return $this->score;
     }
 
-    public function setScore(int $score): static
+    public function setScore(int $score): self
     {
         $this->score = $score;
 
@@ -83,7 +83,7 @@ class Score
         return $this->timer;
     }
 
-    public function setTimer(string $timer): static
+    public function setTimer(string $timer): self
     {
         $this->timer = $timer;
 
@@ -95,7 +95,7 @@ class Score
         return $this->equations;
     }
 
-    public function setEquations(array $equations): static
+    public function setEquations(array $equations): self
     {
         $this->equations = $equations;
 
@@ -108,7 +108,7 @@ class Score
     }
 
     #[ORM\PrePersist]
-    public function setCreatedAt(): static
+    public function setCreatedAt(): self
     {
         $this->createdAt = new \DateTimeImmutable;
 
@@ -120,7 +120,7 @@ class Score
         return $this->user;
     }
 
-    public function setUser(?User $user): static
+    public function setUser(?User $user): self
     {
         $this->user = $user;
 
@@ -132,7 +132,7 @@ class Score
         return $this->leaderboard;
     }
 
-    public function setLeaderboard(?LeaderBoard $leaderboard): static
+    public function setLeaderboard(?LeaderBoard $leaderboard): self
     {
         $this->leaderboard = $leaderboard;
 

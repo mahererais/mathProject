@@ -75,7 +75,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return (string) $this->username;
     }
 
-    public function setUsername(string $username): static
+    public function setUsername(string $username): self
     {
         $this->username = $username;
 
@@ -104,7 +104,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return array_unique($roles);
     }
 
-    public function setRoles(array $roles): static
+    public function setRoles(array $roles): self
     {
         $this->roles = $roles;
 
@@ -119,7 +119,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->password;
     }
 
-    public function setPassword(string $password): static
+    public function setPassword(string $password): self
     {
         $this->password = $password;
 
@@ -152,7 +152,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     #[ORM\PrePersist]
-    public function setCreatedAt(): static
+    public function setCreatedAt(): self
     {
         $this->createdAt = new \DateTimeImmutable;
 
@@ -165,7 +165,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
     
     #[ORM\PreUpdate]
-    public function setUpdatedAt(?\DateTimeImmutable $updatedAt): static
+    public function setUpdatedAt(?\DateTimeImmutable $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
 
@@ -180,7 +180,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->scores;
     }
 
-    public function addScore(Score $score): static
+    public function addScore(Score $score): self
     {
         if (!$this->scores->contains($score)) {
             $this->scores->add($score);
@@ -190,7 +190,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function removeScore(Score $score): static
+    public function removeScore(Score $score): self
     {
         if ($this->scores->removeElement($score)) {
             // set the owning side to null (unless already changed)

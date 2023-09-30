@@ -53,7 +53,7 @@ class LeaderBoard
         return $this->title;
     }
 
-    public function setTitle(string $title): static
+    public function setTitle(string $title): self
     {
         $this->title = $title;
 
@@ -66,7 +66,7 @@ class LeaderBoard
     }
 
     #[ORM\PrePersist]
-    public function setCreatedAt(): static
+    public function setCreatedAt(): self
     {
         $this->createdAt = new \DateTimeImmutable;
 
@@ -79,7 +79,7 @@ class LeaderBoard
     }
     
     #[ORM\PreUpdate]
-    public function setUpdatedAt(?\DateTimeImmutable $updatedAt): static
+    public function setUpdatedAt(?\DateTimeImmutable $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
 
@@ -94,7 +94,7 @@ class LeaderBoard
         return $this->scores;
     }
 
-    public function addScore(Score $score): static
+    public function addScore(Score $score): self
     {
         if (!$this->scores->contains($score)) {
             $this->scores->add($score);
@@ -104,7 +104,7 @@ class LeaderBoard
         return $this;
     }
 
-    public function removeScore(Score $score): static
+    public function removeScore(Score $score): self
     {
         if ($this->scores->removeElement($score)) {
             // set the owning side to null (unless already changed)
@@ -121,7 +121,7 @@ class LeaderBoard
         return $this->operateur;
     }
 
-    public function setOperateur(string $operateur): static
+    public function setOperateur(string $operateur): self
     {
         $this->operateur = $operateur;
 
