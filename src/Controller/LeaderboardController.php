@@ -42,7 +42,6 @@ class LeaderboardController extends AbstractController
     #[Route('/leaderboards/delete/{id}', name: 'app_leaderboard_delete', requirements: ['id' => '\d+'], methods: ["GET", "POST"])]
     public function delete(LeaderboardRepository $leaderboardRepository, int $id, EntityManagerInterface $entityManager): JsonResponse
     {
-        
         $leaderboard = $leaderboardRepository->find($id);
         if ($leaderboard) {
             $entityManager->remove($leaderboard);

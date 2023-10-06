@@ -19,7 +19,7 @@ class Score
     
     #[ORM\Column]
     #[Groups(["scores"])]
-    #[Assert\NotBlank(message: "le score ne pas être vide")]
+    #[Assert\NotBlank(message: "le score ne peut pas être vide")]
     #[Assert\Type(type: "int", message: "le score doit être un entier")]
     private ?int $score = null;
 
