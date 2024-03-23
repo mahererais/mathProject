@@ -59,4 +59,7 @@ class LoginAuthenticator extends AbstractLoginFormAuthenticator
     {
         return $this->urlGenerator->generate(self::LOGIN_ROUTE);
     }
+
+    // /api/login_check
+    // /api/login_check
 }

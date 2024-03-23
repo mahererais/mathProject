@@ -10,9 +10,9 @@ type Props = {
 const Screen: React.FC<Props> = ({value, equation}) => {
   return (
     <>
-      <div className="screen">
+      <div className="screen" >
         <span className="left">{equation?.replace("*", "x") ?? ""} = </span>
-        <span className="right">{value}</span>
+        <span className="right" tabIndex={0}>{value}</span>
       </div>
     </>
   );

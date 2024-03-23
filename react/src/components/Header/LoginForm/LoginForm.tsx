@@ -11,6 +11,7 @@ interface LoginFormProps {
   handleLogout: () => void;
   isLogged?: boolean;
   loggedMessage?: string;
+  login: () => void
 }
 function LoginForm({ 
   email,
@@ -20,6 +21,7 @@ function LoginForm({
   handleLogout,
   isLogged,
   loggedMessage,
+  login
 }: LoginFormProps) {
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -61,7 +63,7 @@ function LoginForm({
             onChange={handleChangeField("password")}
             value={password}
           />
-          <button type="submit" className="login-form-button">
+          <button type="submit" className="login-form-button" onClick={login}>
             OK
           </button>
         </form>

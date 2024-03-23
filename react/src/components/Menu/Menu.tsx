@@ -8,7 +8,7 @@ import Header from "../Header/Header";
 const Menu: React.FC = () => {
   return (
     <>
-      <Header />
+      {/* <Header /> */}
       <div className="menu">
         <ButtonMenu text={"solo"} />
         <ButtonMenu text={"duo"} />

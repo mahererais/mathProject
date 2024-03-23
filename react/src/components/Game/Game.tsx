@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./Game.scss";
 import { useNavigate, useParams } from "react-router-dom";
 import Button from "./Button/Button";
@@ -25,7 +25,6 @@ const Game : React.FC = () => {
     //     "2 + 8",
     //     "8 + 3",
     //     "12 + 4",
-
     // ];
 
     
@@ -39,7 +38,8 @@ const Game : React.FC = () => {
     const navigate = useNavigate();
 
     console.log(GameMode.pause)
-    
+
+    const gameContainerRef = useRef<HTMLDivElement>(null);
     
     useEffect(() => {
         if (gameMode == GameMode.retry) {
@@ -52,7 +52,7 @@ const Game : React.FC = () => {
             setEquations(getRandomEquations(10, symbolOperator));
             console.log(equations);
         }
-
+        gameContainerRef.current?.focus();
     }, [gameMode]);
 
     const symbolOperator  = operatorSymbol(operator ?? "+");
@@ -116,9 +116,9 @@ const Game : React.FC = () => {
     return (
             // = https://stackoverflow.com/questions/43503964/onkeydown-event-not-working-on-divs-in-react
         <>
-            <button className="back" onClick={() => { navigate("/")}}>Menu</button>
-            <div className="game_containers" onKeyDown={keydown} tabIndex={0}>
-                <Screen value={screenValue} equation={equations[equationIndex]}/>
+            {/* <button className="back" onClick={() => { navigate("/")}}>Menu</button> */}
+            <div className="game_containers" onKeyDown={keydown} ref={gameContainerRef} tabIndex={0}>
+                <Screen value={screenValue} equation={equations[equationIndex]} />
                 <div className="buttons">
                     {["1","2","3","4","5","6","7","8","9","0"].map((element: string, index) => {
                         return <Button value={element} key={index} update={updateScreenValue} gameMode={gameMode}/>

@@ -19,17 +19,47 @@ function Header() {
      } 
   }
 
+  const login = () => {
+    fetch("http://localhost:8080/api/login_check", { 
+      headers: {
+                "Content-Type": "application/json"
+      },
+      method: "POST",
+      body: JSON.stringify(
+        {
+          username: email,
+          password: password
+        }
+      )
+    })
+    .then(r => {
+      console.log(r);
+      if (r.ok  == false) 
+        return 
+      
+      return r.json();
+    })
+    .then(d => {
+        if (d != null) {
+          console.log(d);
+          setIsLogged(true);
+        }
+      }
+    )
+  }
+
   const loginFormProps = {
     email: email,
     password: password,
     changeField: changeField ,
-    handleLogin: () => {undefined},
+    handleLogin: () => {login},
     handleLogout: () => {
       setEmail(""); setPassword("");
       setIsLogged(false); setPseudo("")    
     },
     isLogged: isLogged,
     loggedMessage: pseudo ? `bienvenue ${pseudo}` : "",
+    login
   } 
 
   return (
