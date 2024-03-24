@@ -35,7 +35,7 @@ const Game : React.FC = () => {
     const [equations, setEquations] = useState<string[]>([]);
 
     const  {operator} = useParams();
-    const navigate = useNavigate();
+    //const navigate = useNavigate();
 
     console.log(GameMode.pause)
 

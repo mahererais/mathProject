@@ -1,7 +1,12 @@
 import { Link } from 'react-router-dom';
 import './Header.scss';
 import LoginForm from './LoginForm/LoginForm';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { api } from "../../Api/api";
+
+import { toast, Bounce } from 'react-toastify';
+
+const tokenKey = "mathToken";
 
 function Header() {
 
@@ -19,47 +24,38 @@ function Header() {
      } 
   }
 
-  const login = () => {
-    fetch("http://localhost:8080/api/login_check", { 
-      headers: {
-                "Content-Type": "application/json"
-      },
-      method: "POST",
-      body: JSON.stringify(
-        {
-          username: email,
-          password: password
-        }
-      )
-    })
-    .then(r => {
-      console.log(r);
-      if (r.ok  == false) 
-        return 
-      
-      return r.json();
-    })
-    .then(d => {
-        if (d != null) {
-          console.log(d);
-          setIsLogged(true);
-        }
-      }
-    )
-  }
+  useEffect(() => {
+    if (api.getUserName()) {
+      setIsLogged(true);
+      setPseudo(api.getUserName());
+    }
+
+  }, [isLogged])
 
   const loginFormProps = {
     email: email,
     password: password,
     changeField: changeField ,
-    handleLogin: () => {login},
+    handleLogin: () => {api.login},
     handleLogout: () => {
       setEmail(""); setPassword("");
-      setIsLogged(false); setPseudo("")    
+      setIsLogged(false); setPseudo("")   
+      localStorage.removeItem(tokenKey)
+      toast.success('Deconnexion success !!', {
+        position: "top-center",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+        transition: Bounce,
+        });
     },
     isLogged: isLogged,
     loggedMessage: pseudo ? `bienvenue ${pseudo}` : "",
-    login
+    login: () => {api.login({email, password, setIsLogged})}
   } 
 
   return (

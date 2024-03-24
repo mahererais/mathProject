@@ -21,7 +21,7 @@ class ScoreDenormalizer implements DenormalizerInterface
         //dump($type, $data);
         //  Dans quel cas je vais bien utiliser mon denormalizer custom
         // si c'est un entier et que c'est une entité symfo je vais chercher en bdd l'élément qui correspond
-        if(isset($data["id"]) && is_int($data["id"]) && strpos($type,"App\Entity") === 0){
+        if(is_int($data) && strpos($type,"App\Entity") === 0){
             return true;
         }
 

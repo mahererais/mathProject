@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Results.scss";
 
 import { useNavigate } from "react-router-dom";
+import { api } from "../../../Api/api";
 
 enum GameMode {
   end,
@@ -30,6 +31,15 @@ const Results: React.FC<Props> = ({ equations, results, setGameMode}) => {
 
     return eval(equation) == result 
   }
+
+  useEffect(() => {
+    const score = equations.reduce((somme: number, value: string, index: number) =>  {
+      const equation = equations[index];
+      const result = results[index];
+      return somme + (eval(equation) == result ? 1 : 0); 
+    }, 0)
+    api.sendScore(score, equations);
+  }, []);
 
   console.log("map index : " + equations);
   return (

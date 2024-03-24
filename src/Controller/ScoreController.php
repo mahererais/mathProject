@@ -79,7 +79,9 @@ class ScoreController extends AbstractController
     #[Route("/scores/add", name: "app_score_add", methods: ["POST"])]
     public function add(SerializerInterface $serializer, Request $request, EntityManagerInterface $entityManager, ValidatorInterface $validator): JsonResponse
     {
+
         $content = $request->getContent();
+        dump($content);
         try {
             $score = $serializer->deserialize($content, Score::class, 'json');
         } catch (NotEncodableValueException $e) {

@@ -43,6 +43,11 @@ class LeaderBoard
         $this->scores = new ArrayCollection();
     }
 
+    public function __toString() 
+    {
+        return "LeaderBoard __toString function";
+    }
+
     public function getId(): ?int
     {
         return $this->id;

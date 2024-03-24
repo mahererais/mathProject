@@ -27,7 +27,7 @@ class Score
     #[Groups(["scores"])]
     #[Assert\NotBlank(message: "le timer ne pas être vide")]
     #[Assert\Length(
-        max : 11,
+        max : 32,
         min : 4,
         minMessage : "erreur lors de l'ajout du timer (non respect des contraintes)",
         maxMessage : "erreur lors de l'ajout du timer (non respect des contraintes)"

@@ -62,6 +62,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->scores = new ArrayCollection();
     }
 
+    public function __toString() 
+    {
+        return "User __toString function";
+    }
+
     public function getId(): ?int
     {
         return $this->id;
