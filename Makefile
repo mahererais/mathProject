@@ -7,7 +7,7 @@ start:
 	docker-compose up -d
 
 stop:
-	docker stop php-8.1-math phpmyadmin-math mysql-math node-math
+	docker stop php-8.1-math phpmyadmin-math mariadb-math node-math
 
 restart:
 	make stop start

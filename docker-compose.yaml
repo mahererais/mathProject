@@ -1,0 +1,67 @@
+version: '3.1'
+
+services:
+  php-apache:
+    build:
+      context: ./docker/php-apache
+      dockerfile: Dockerfile
+    container_name: php-8.1-math
+    restart: unless-stopped
+    depends_on:
+      - database
+    ports:
+      - 8080:80
+    volumes:
+      - ./backend:/var/www
+    networks:
+      - app-network
+
+  database:
+    image: mariadb:latest
+    container_name: mariadb-math
+    restart: unless-stopped
+    volumes:
+      - db-data:/var/lib/mysql
+    ports:
+      - 3307:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+      MYSQL_DATABASE: maths
+      MYSQL_USER: maths
+      MYSQL_PASSWORD: maths
+    networks:
+      - app-network
+  
+  phpmyadmin:
+    image: phpmyadmin
+    container_name: phpmyadmin-math
+    restart: unless-stopped
+    depends_on:
+      - database
+    ports:
+      - 8081:80
+    environment:
+      PMA_HOST: database
+    networks:
+      - app-network
+    
+  node:
+    build:
+      # context: ./docker/node
+      context: .
+      dockerfile: Dockerfile
+    container_name: node-math
+    volumes:
+      - ./front:/usr/src/app
+    ports:
+      - 5188:5188
+    networks:
+      - app-network
+    command: npm run dev
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  db-data:
