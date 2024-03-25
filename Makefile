@@ -1,7 +1,7 @@
 
 
 install:
-	make start vendor-install
+	make start vendor-install genere-jwt-key
 
 start:
 	docker-compose up -d
@@ -31,9 +31,11 @@ warmup-cache:
 	docker exec php-8.1-math bash -c "php bin/console c:warmup"
 
 genere-jwt-key:
+	docker exec php-8.1-math bash -c "rm -fr config/jwt"
 	docker exec php-8.1-math bash -c "php bin/console lexik:jwt:generate-keypair"
 
 fixture:
+	# docker exec php-8.1-math bash -c "php bin/console do:da:dr --force"
 	docker exec php-8.1-math bash -c "php bin/console d:d:c --no-interaction"
 	docker exec php-8.1-math bash -c "php bin/console do:mi:mi --no-interaction"
 	docker exec php-8.1-math bash -c "php bin/console do:fi:lo --no-interaction"

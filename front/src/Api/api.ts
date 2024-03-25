@@ -1,4 +1,4 @@
-import { toast, Bounce } from 'react-toastify';
+import { toast, Bounce, ToastOptions } from 'react-toastify';
 
 const tokenKey = "mathToken";
 
@@ -11,8 +11,21 @@ type PropsLogin = {
 }
 
 export const api = {
-
+    
     login : ({email, password, setIsLogged}: PropsLogin) => {
+      const notificationOptions: ToastOptions = 
+        {
+          position: "top-center",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+          transition: Bounce,
+          };
+
       fetch(`http://${host}/api/login_check`, { 
         headers: {
                   "Content-Type": "application/json"
@@ -27,8 +40,9 @@ export const api = {
       })
       .then(r => {
         console.log(r);
-        if (r.ok  == false) 
-          return 
+        if (r.ok  == false) {
+          return null
+        }
         
         return r.json();
       })
@@ -38,18 +52,11 @@ export const api = {
             if (d.token) {
               setIsLogged(true);
               localStorage.setItem(tokenKey, d.token)
-              toast.success('Connexion success !!', {
-                position: "top-center",
-                autoClose: 2000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "colored",
-                transition: Bounce,
-                });
+              toast.success('Connexion success !!', notificationOptions);
             }
+          } else{ 
+            toast.error('Connexion failed !!', notificationOptions);
+
           }
         }
       )
@@ -81,7 +88,7 @@ export const api = {
           body: JSON.stringify(
             {
               user: userId,
-              leaderboard: 25,
+              leaderboard: 1,
               score: score,
               equations: equations,
               timer: (new Date()).toISOString()
