@@ -25,7 +25,7 @@ services:
     ports:
       - 3307:3306
     environment:
-      MYSQL_ROOT_PASSWORD: example
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-example}
       MYSQL_DATABASE: maths
       MYSQL_USER: maths
       MYSQL_PASSWORD: maths
@@ -39,7 +39,7 @@ services:
     depends_on:
       - database
     ports:
-      - 8081:80
+      - 8090:80
     environment:
       PMA_HOST: database
     networks:
