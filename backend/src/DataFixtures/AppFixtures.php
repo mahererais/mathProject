@@ -59,22 +59,23 @@ class AppFixtures extends Fixture
 
         // ===============================
         // = generation des scores
-        for ($i=0; $i < 20; $i++) { 
-            $nombreEquationMax = 10;
-            $score = new Score();
-            $score->setScore(mt_rand(0, $nombreEquationMax) + 1);
-            $score->setTimer(mt_rand($nombreEquationMax, 200) . ":" . str_pad(mt_rand(0, 99), 2));
+        // for ($i=0; $i < 20; $i++) { 
+        //     $nombreEquationMax = 10;
+        //     $score = new Score();
+        //     $score->setScore(mt_rand(0, $nombreEquationMax) + 1);
+        //     $score->setTimer(mt_rand($nombreEquationMax, 200) . ":" . str_pad(mt_rand(0, 99), 2));
             
-            // = mes relations 
-            $score->setUser($users[array_rand($users)]);
-            $score->setLeaderboard($leaderBoards[array_rand($leaderBoards)]);
+        //     // = mes relations 
+        //     $score->setUser($users[array_rand($users)]);
+        //     $score->setLeaderboard($leaderBoards[array_rand($leaderBoards)]);
             
-            // =  generation de mes equations en fonction du mode de jeu (+ , -, x ou /)
-            $operator = $score->getLeaderboard()->getOperateur();
-            $score->setEquations($this->getEquations($operator, $nombreEquationMax));
+        //     // =  generation de mes equations en fonction du mode de jeu (+ , -, x ou /)
+        //     $operator = $score->getLeaderboard()->getOperateur();
+        //     $score->setEquations($this->getEquations($operator, $nombreEquationMax));
             
-            $manager->persist($score);
-        }
+        //     $manager->persist($score);
+        // }
+        // ===============================
         $manager->flush();
     }
 

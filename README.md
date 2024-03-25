@@ -2,15 +2,9 @@
 
 - `cd <project_path>`
 
-- open two terminals 
+- `make install`
+- `make fixture`
 
-- terminal n°1
-  - `cd backend`
-  - `composer install`
-  - `php bin/console lexik:jwt:generate-keypair`
-  - `php -S 0.0.0.0:8080 -t public`
+## production
 
-- terminal n°2
-  - `cd front`
-  - `npm install`
-  - `npm run dev`
+- change .env.local for ***front project*** & ***backend project*** 
