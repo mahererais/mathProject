@@ -53,6 +53,7 @@ services:
     container_name: node-math
     volumes:
       - ./front:/usr/src/app
+      - /usr/src/app/node_modules
     ports:
       - 5188:5188
     networks:
