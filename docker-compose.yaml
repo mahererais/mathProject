@@ -4,7 +4,7 @@ services:
   php-apache:
     build:
       context: ./docker/php-apache
-      dockerfile: Dockerfile
+      dockerfile: ./Dockerfile
     container_name: php-8.1-math
     restart: unless-stopped
     depends_on:
@@ -47,9 +47,7 @@ services:
     
   node:
     build:
-      # context: ./docker/node
-      context: .
-      dockerfile: Dockerfile
+      dockerfile: ./docker/node/Dockerfile
     container_name: node-math
     volumes:
       - ./front:/usr/src/app
