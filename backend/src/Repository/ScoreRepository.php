@@ -54,4 +54,19 @@ class ScoreRepository extends ServiceEntityRepository
     //            ->getOneOrNullResult()
     //        ;
     //    }
+
+    /**
+    * @return Score[] Returns an array of Score objects
+    */
+    public function findScoreForUser(int $id): array
+    {
+        return $this->createQueryBuilder('s')
+            ->innerJoin('s.user', 'u')
+            ->andWhere('u.id = :id')
+            ->setParameter('id', $id)
+            ->addOrderBy('s.score', 'DESC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 }

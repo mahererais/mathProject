@@ -25,11 +25,11 @@ function Header() {
   }
 
   useEffect(() => {
-    if (api.getUserName()) {
+    const name = api.getUserName();
+    if (name) {
       setIsLogged(true);
-      setPseudo(api.getUserName());
+      setPseudo(name);
     }
-
   }, [isLogged])
 
   const loginFormProps = {

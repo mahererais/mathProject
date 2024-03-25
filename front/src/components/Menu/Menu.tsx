@@ -3,7 +3,6 @@ import "./Menu.scss";
 import "../Header/Header";
 
 import ButtonMenu from "./ButtonMenu/ButtonMenu";
-import Header from "../Header/Header";
 
 const Menu: React.FC = () => {
   return (

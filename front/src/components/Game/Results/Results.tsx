@@ -54,7 +54,7 @@ const Results: React.FC<Props> = ({ equations, results, setGameMode}) => {
           return (
             <>
               <span key={index}>{equation}</span>
-              <span key={1000 + index} className={checkResultFor(index) ? "success" : "failed"}>{results[index]}</span>
+              <span key={-1*index-1} className={checkResultFor(index) ? "success" : "failed"}>{results[index]}</span>
             </>
           );
         })}

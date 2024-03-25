@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\ScoreRepository;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -50,6 +51,18 @@ class UserController extends AbstractController
                 Response::HTTP_OK, 
             );
         }
+    }
 
+    #[Route('/user/{id}/scores', name: 'app_user_scores', requirements: ['id' => '\d+'], methods: ["GET"])]
+    public function getScore(ScoreRepository $scoreRepository, int $id): JsonResponse
+    {
+        $score = $scoreRepository->findScoreForUser($id);
+
+        return $this->json(
+            $score,
+            Response::HTTP_OK,
+            [],
+            ["groups" => "scores"]
+        );
     }
 }

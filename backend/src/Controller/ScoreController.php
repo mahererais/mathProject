@@ -2,9 +2,7 @@
 
 namespace App\Controller;
 
-use App\Entity\LeaderBoard;
 use App\Entity\Score;
-use App\Entity\User;
 use App\Repository\ScoreRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Exception;
@@ -24,7 +22,7 @@ class ScoreController extends AbstractController
     public function list(ScoreRepository $scoreRepository): JsonResponse
     {
 
-        $scores = $scoreRepository->findAll();
+        $scores = $scoreRepository->findBy([], ['score' => 'DESC']);
 
         return $this->json(
             $scores,
