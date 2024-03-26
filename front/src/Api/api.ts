@@ -78,7 +78,11 @@ export const api = {
           transition: Bounce,
           });
       }
+<<<<<<< Updated upstream
       if (userId && token) {
+=======
+      if (userId) { // !! first user id begin with number 1
+>>>>>>> Stashed changes
         fetch(`http://${host}/api/scores/add`, { 
           headers: {
               "Content-Type": "application/json",
@@ -119,8 +123,6 @@ export const api = {
               notificationFailed()
             }
           })
-      }else{
-        notificationFailed()
       }
     },
 
@@ -130,7 +132,7 @@ export const api = {
     },
 
     isTokenUserID: (token: string) => {
-      return (JSON.parse(atob(token.split('.')[1]))).id;
+      return token ? (JSON.parse(atob(token.split('.')[1]))).id : null;
     },
 
     getUserName: () => {
