@@ -16,7 +16,7 @@ type Props = {
 }
 
 const Scores: React.FC<Props> = ({setShowScore}: Props) => {
-  const [scores, setScores] = useState<ApiScore>([])
+  const [scores, setScores] = useState<ApiScore[]>([])
 
   useEffect(() => {
     async function fetch() {
@@ -26,13 +26,11 @@ const Scores: React.FC<Props> = ({setShowScore}: Props) => {
     fetch()
   }, []);
 
-  console.log(scores);
   return (
     <div className="score_wrapper">
-      <button onClick={() => {setShowScore(false); console.log("X was clicked")}}>X</button>
+      <button onClick={() => {setShowScore(false);}}>X</button>
       <div className="score_container">
           {scores.map((score, index) => {
-            //console.log("map index: " + index);
             return (
               <div key={index} className="score_body">
                   <p>{score.score}</p>

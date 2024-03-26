@@ -26,8 +26,6 @@ const Results: React.FC<Props> = ({ equations, results, setGameMode}) => {
   const checkResultFor:(index: number) => boolean =  (index: number) => {
     const equation = equations[index];
     const result = results[index];
-    console.log(equation);
-    console.log(result);
 
     return eval(equation) == result 
   }
@@ -41,7 +39,6 @@ const Results: React.FC<Props> = ({ equations, results, setGameMode}) => {
     api.sendScore(score, equations);
   }, []);
 
-  console.log("map index : " + equations);
   return (
     <div className="results_container">
       <div className="results_header">
@@ -50,7 +47,6 @@ const Results: React.FC<Props> = ({ equations, results, setGameMode}) => {
       </div>
       <div className="results_body">
         {equations.map((equation, index) => {
-          console.log("map index: " + index);
           return (
             <>
               <span key={index}>{equation}</span>

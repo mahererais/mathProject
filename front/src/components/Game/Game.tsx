@@ -24,7 +24,6 @@ const Game : React.FC = () => {
     const [popSound] = useSound(pop, {volume: 0.1});
     const [clickSound] = useSound(click, {volume: 0.5});
     const [cancleSound] = useSound(cancel, {volume: 0.1});
-
     
     const [userResult, setUserResult] = useState<string[]>([]);
     const [gameMode, setGameMode] = useState<GameMode>(GameMode.begin);
@@ -33,9 +32,6 @@ const Game : React.FC = () => {
     const [equations, setEquations] = useState<string[]>([]);
 
     const  {operator} = useParams();
-    //const navigate = useNavigate();
-
-    console.log(GameMode.pause)
 
     const gameContainerRef = useRef<HTMLDivElement>(null);
     
@@ -48,7 +44,6 @@ const Game : React.FC = () => {
         if ((gameMode == GameMode.begin) || (gameMode == GameMode.retry)) {
             setGameMode(GameMode.run)
             setEquations(getRandomEquations(10, symbolOperator));
-            console.log(equations);
         }
         gameContainerRef.current?.focus();
     }, [gameMode]);
@@ -56,9 +51,7 @@ const Game : React.FC = () => {
     const symbolOperator  = operatorSymbol(operator ?? "+");
 
 
-    const keydown: React.KeyboardEventHandler<HTMLDivElement> = (e) => {
-        console.log(e.code);
-        
+    const keydown: React.KeyboardEventHandler<HTMLDivElement> = (e) => {    
         switch (e.code) {
             case "Numpad1": updateScreenValue("1");break;
             case "Numpad2": updateScreenValue("2");break;
@@ -98,10 +91,8 @@ const Game : React.FC = () => {
                 setUserResult(prev =>  [...prev, screenValue]);
                 setEquationIndex(prev => prev + 1);
                 if (userResult.length + 1 >= equations.length) {
-                    console.log(gameMode);
                     setGameMode(GameMode.end);
                 }
-                console.log(userResult);
                 break;
         
             default:

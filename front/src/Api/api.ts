@@ -39,7 +39,6 @@ export const api = {
         )
       })
       .then(r => {
-        console.log(r);
         if (r.ok  == false) {
           return null
         }
@@ -48,7 +47,6 @@ export const api = {
       })
       .then(d => {
           if (d != null) {
-            console.log(d);
             if (d.token) {
               setIsLogged(true);
               localStorage.setItem(tokenKey, d.token)
@@ -97,7 +95,6 @@ export const api = {
           )
         })
         .then(r => {
-          //console.log(r);
           if (r.ok  == false) 
             return 
           
@@ -138,21 +135,9 @@ export const api = {
         localStorage.removeItem(tokenKey)
         return "";
       }
-      // console.log(token);
       if (!token || token == "undefined") {
        return undefined;
       } else {
-        // const jsonPayload = decodeURIComponent(
-        //   atob(
-        //     token!
-        //     .split('.')[1]
-        //     .replace('-', '+')
-        //     .replace('_', '/'))
-        //     .split('')
-        //     .map(c => `%${('00' + c.charCodeAt(0).toString(16)).slice(-2)}`).join(''));
-    
-        // return JSON.parse(jsonPayload).username ?? "";
-
         return (JSON.parse(atob(token.split('.')[1]))).username ?? "";
       }
     },
@@ -166,7 +151,6 @@ export const api = {
         },
         method: "GET"
       })
-      console.log('test')
 
       if (response.ok  == false) 
           return []
@@ -174,7 +158,6 @@ export const api = {
       const data = await response.json();
 
       if (data != null) {
-        console.log(data);
         return data;
       }
 
