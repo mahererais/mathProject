@@ -78,7 +78,7 @@ export const api = {
           transition: Bounce,
           });
       }
-      if (userId) {
+      if (userId && token) {
         fetch(`http://${host}/api/scores/add`, { 
           headers: {
               "Content-Type": "application/json",
