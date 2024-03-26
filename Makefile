@@ -1,7 +1,7 @@
 
 
 install:
-	make start vendor-install genere-jwt-key
+	make build start vendor-install genere-jwt-key
 
 start:
 	docker-compose up -d
