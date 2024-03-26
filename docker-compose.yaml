@@ -50,6 +50,7 @@ services:
       context: .
       dockerfile: ./docker/node/Dockerfile
     container_name: node-math
+    restart: unless-stopped
     volumes:
       - ./front:/usr/src/app
       - /usr/src/app/node_modules

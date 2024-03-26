@@ -1,10 +1,15 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./Game.scss";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import Button from "./Button/Button";
 import Screen from "./Screen/Screen";
 import Results from "./Results/Results";
 import { getRandomEquations, operatorSymbol } from "./Controller/Controller";
+
+import useSound from 'use-sound';
+import pop from '../../assets/sounds/pop.mp3';
+import click from '../../assets/sounds/switch-on.mp3';
+import cancel from '../../assets/sounds/disable-sound.mp3';
 
 enum GameMode {
     end = 0 ,
@@ -14,18 +19,11 @@ enum GameMode {
     pause = 8,
 }
 
-const Game : React.FC = () => {
+const Game : React.FC = () => { 
 
-    // const equations = [
-    //     "95 + 99",
-    //     "1 + 1",
-    //     "4 + 5",
-    //     "5 + 6",
-    //     "7 + 1",
-    //     "2 + 8",
-    //     "8 + 3",
-    //     "12 + 4",
-    // ];
+    const [popSound] = useSound(pop, {volume: 0.1});
+    const [clickSound] = useSound(click, {volume: 0.5});
+    const [cancleSound] = useSound(cancel, {volume: 0.1});
 
     
     const [userResult, setUserResult] = useState<string[]>([]);
@@ -89,11 +87,13 @@ const Game : React.FC = () => {
         switch (value) {
             case "AC": 
                 setScreenValue("");
+                cancleSound();
                 break;
             case "OK": 
+                popSound()
                 if (!screenValue.trim())
                     return 
-
+                
                 setScreenValue("");
                 setUserResult(prev =>  [...prev, screenValue]);
                 setEquationIndex(prev => prev + 1);
@@ -106,10 +106,10 @@ const Game : React.FC = () => {
         
             default:
                 if (gameMode === GameMode.run && screenValue.length < 5)
+                    clickSound()
                     setScreenValue(prev =>  prev === "0" ? value : prev + value);
                 break;
         }
-
         
     };
 
