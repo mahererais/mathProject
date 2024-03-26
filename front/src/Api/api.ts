@@ -78,12 +78,9 @@ export const api = {
           transition: Bounce,
           });
       }
-<<<<<<< Updated upstream
-      if (userId && token) {
-=======
-      if (userId) { // !! first user id begin with number 1
->>>>>>> Stashed changes
-        fetch(`http://${host}/api/scores/add`, { 
+
+      if (userId) { // !! first user id begin with number 
+	fetch(`http://${host}/api/scores/add`, { 
           headers: {
               "Content-Type": "application/json",
               "Authorization": `Bearer ${token ?? ''}`
