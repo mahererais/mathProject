@@ -22,7 +22,7 @@ vendor-install:
 	docker exec php-8.1-math bash -c "composer install --prefer-dist --no-interaction"
 
 node-install:
-	docker exec node-math -c "npm install --force"
+	docker exec node-math bash -c "npm install --force"
 
 clear-cache:
 	docker exec php-8.1-math bash -c "php bin/console c:c"
