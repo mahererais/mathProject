@@ -1,4 +1,4 @@
-
+BASE ?= ./
 
 install:
 	make build start vendor-install genere-jwt-key
@@ -41,4 +41,4 @@ fixture:
 	docker exec php-8.1-math bash -c "php bin/console do:fi:lo --no-interaction"
 
 deploy:
-	docker exec node-math bash -c "npm run build /math"
+	docker exec node-math bash -c "npm run build ${BASE}"

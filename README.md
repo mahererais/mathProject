@@ -7,4 +7,5 @@
 
 ## production
 
-- change .env.local for ***front project*** & ***backend project*** 
+- add .env.local for ***front project*** & ***backend project***
+- `make deploy` or `make deploy BASE=<alias set apache .conf>`
