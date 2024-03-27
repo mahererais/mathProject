@@ -17,7 +17,12 @@ const App: React.FC = () => {
       <Header />
       <Routes>
         <Route path="/" element={<Menu />} /> 
-        <Route path="/solo/:operator" element={<Game />} /> 
+        <Route path="/solo/:operator" element={<Game />} />
+        {/* // = la route a ete ajouté temporairement, parce qu'en production sur le serveur */ }
+        {/* // = "mahererais-server.eddi.cloud", j'ai cree un alias dans .conf d'apache2 */ }
+        {/* // = pour ce connecter au site (=> http://mahererais-server.eddi.cloud/math) */ }
+        {/* // = et cela creer un probleme de route  */ }
+        <Route path="/math" element={<Menu />} /> 
       </Routes>
     </>
   )
