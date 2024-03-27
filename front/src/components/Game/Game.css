@@ -1,0 +1,41 @@
+.back {
+  width: -moz-max-content;
+  width: max-content;
+  height: 35px;
+  border-radius: 5px;
+  background-color: #FF2C79;
+  border: 2px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  cursor: pointer;
+  color: white;
+  font-size: 1em;
+  padding-inline: 15px;
+  box-shadow: 0 0 10px #545454;
+}
+.back:hover {
+  opacity: 0.8;
+}
+
+.game_containers {
+  position: relative;
+  height: 80vh;
+  min-height: 300px;
+  aspect-ratio: 6/9;
+  max-width: 95%;
+  outline: none;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+  margin: auto;
+}
+.game_containers .buttons {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  height: 75%;
+  width: 100%;
+  border: 1px solid black;
+}/*# sourceMappingURL=Game.css.map */

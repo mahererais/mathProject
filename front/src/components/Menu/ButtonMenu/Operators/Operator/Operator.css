@@ -1,0 +1,19 @@
+.operator {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid black;
+  color: white;
+  text-decoration: none;
+}
+.operator:hover {
+  opacity: 0.9;
+}
+
+.operator:nth-of-type(n) {
+  background-color: #242424;
+}
+
+.operator:nth-of-type(3n - 2) {
+  background-color: #343434;
+}/*# sourceMappingURL=Operator.css.map */

@@ -1,0 +1,28 @@
+.login-form-element {
+  display: flex;
+  align-items: center;
+}
+.login-form-element > button {
+  cursor: pointer;
+  font-weight: bolder;
+}
+.login-form-element > button:active {
+  background-color: orange;
+}
+.login-form-message {
+  margin: 0.3em 1em;
+}
+.login-form-logged {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.login-form-button {
+  font-size: 1em;
+  color: #fff;
+  background-color: #343434;
+  border-radius: 0.3em;
+  border: 0;
+  padding: 0.7em;
+  height: 2.5em;
+}/*# sourceMappingURL=LoginForm.css.map */

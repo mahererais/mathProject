@@ -1,0 +1,18 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  background-color: #343434;
+  padding: 1rem;
+  width: 100%;
+  z-index: 100;
+  border-bottom: 2px solid #242424;
+  box-shadow: 0 0 10px black;
+}
+.header .logo {
+  color: white;
+  text-decoration: none;
+  font-size: 1.5rem;
+  font-weight: bold;
+}/*# sourceMappingURL=Header.css.map */
