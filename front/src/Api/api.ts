@@ -3,6 +3,7 @@ import { toast, Bounce, ToastOptions } from 'react-toastify';
 const tokenKey = "mathToken";
 
 const host = import.meta.env.VITE_host;
+const scheme = import.meta.env.VITE_scheme;
 
 type PropsLogin = {
     email: string;
@@ -26,7 +27,7 @@ export const api = {
           transition: Bounce,
           };
 
-      fetch(`http://${host}/api/login_check`, { 
+      fetch(`${scheme}://${host}/api/login_check`, { 
         headers: {
                   "Content-Type": "application/json"
         },
@@ -78,7 +79,7 @@ export const api = {
       }
 
       if (userId) { // !! first user id begin with number 
-	fetch(`http://${host}/api/scores/add`, { 
+	fetch(`${scheme}://${host}/api/scores/add`, { 
           headers: {
               "Content-Type": "application/json",
               "Authorization": `Bearer ${token ?? ''}`
@@ -144,7 +145,7 @@ export const api = {
 
     getScores: async () => {
       const token = localStorage.getItem(tokenKey);
-      const response = await fetch(`http://${host}/api/scores`, { 
+      const response = await fetch(`${scheme}://${host}/api/scores`, { 
         headers: {
           "Content-Type": "application/json",
           "Authorization": `Bearer ${token ?? ''}`
