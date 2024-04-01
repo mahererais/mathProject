@@ -47,7 +47,7 @@ class JWTListener {
         $request = $this->requestStack->getCurrentRequest();
 
         $payload = $event->getPayload();
-        dump($payload);
+        //dump($payload);
 
         if (!isset($payload['ip']) || $payload['ip'] !== $request->getClientIp()) {
             $event->markAsInvalid();

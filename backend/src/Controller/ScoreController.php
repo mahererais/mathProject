@@ -79,7 +79,7 @@ class ScoreController extends AbstractController
     {
 
         $content = $request->getContent();
-        dump($content);
+        //dump($content);
         try {
             $score = $serializer->deserialize($content, Score::class, 'json');
         } catch (NotEncodableValueException $e) {
