@@ -26,7 +26,7 @@ class AppFixtures extends Fixture
     {
         // ===============================
         // = generation des utilisateurs
-        $pseudos = ["rayan", "lilia", "ilyes", "elissa", "maher"];
+        $pseudos = ["rayan", "lilia", "ilyes", "elissa", "maher", "test"];
         /** @var user[] */
         $users = [];
 
