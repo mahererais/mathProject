@@ -96,9 +96,10 @@ const Game : React.FC = () => {
                 break;
         
             default:
-                if (gameMode === GameMode.run && screenValue.length < 5)
+                if (gameMode === GameMode.run && screenValue.length < 3) {
                     clickSound()
                     setScreenValue(prev =>  prev === "0" ? value : prev + value);
+                }
                 break;
         }
         

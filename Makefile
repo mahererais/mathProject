@@ -40,8 +40,9 @@ fixture:
 	docker exec php-8.1-math bash -c "php bin/console do:mi:mi --no-interaction"
 	docker exec php-8.1-math bash -c "php bin/console do:fi:lo --no-interaction"
 
-deploy:
+deploy-back:
 	docker exec php-8.1-math bash -c "composer install --no-dev --optimize-autoloader"
 	docker exec php-8.1-math bash -c "composer dump-env prod"
 	docker exec php-8.1-math bash -c "APP_ENV=prod APP_DEBUG=0 php bin/console cache:clear"
+deploy-front:
 	docker exec node-math bash -c "npm run build ${BASE}"

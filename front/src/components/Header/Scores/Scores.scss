@@ -56,7 +56,7 @@
     &>button {
         position: absolute;
         top: calc(6rem - 10px);
-        right: calc(50% - 240px);
+        left: min(calc(50% + 220px), calc(100% - 60px));
         cursor: pointer;
         z-index: 10;
         border-radius: 50%;
