@@ -60,9 +60,11 @@ function Header() {
 
   return (
     <header className="header">
-      <Link className='logo' to="/">
-        Maths
-      </Link>
+      {/* // = solution temporaire, je pointe sur /math pour eviter de retouner dans le */}
+      {/* // = principale dans mon server web, etant donné que j'utilise des "alias" sur */}
+      {/* // = site apache pour acceder a mon application "Math" */}
+      <Link className='logo' to="/math">Maths</Link>
+      {/* <Link className='logo' to="/">Maths</Link> */}
       <LoginForm {...loginFormProps}></LoginForm>
     </header>
   );
