@@ -15,7 +15,7 @@ class LeaderBoard
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    #[Groups(["scores", "leaderboards"])]
+    #[Groups(["leaderboards"])]
     private ?int $id = null;
 
     #[ORM\Column(length: 32, unique: true)]
