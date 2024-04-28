@@ -5,6 +5,10 @@
 - `make install`
 - `make fixture`
 
+## dev - launch
+
+- browser : `http://localhost:5188/`
+
 ## production
 
 - add .env.local for ***front project*** & ***backend project***
