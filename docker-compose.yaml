@@ -14,8 +14,6 @@ services:
       - 8081:443  
     volumes:
       - ./backend:/var/www
-      - /etc/letsencrypt/live/math.mahererais.fr/fullchain.pem:/etc/apache2/certs/math.mahererais.fr/fullchain.pem
-      - /etc/letsencrypt/live/math.mahererais.fr/privkey.pem:/etc/apache2/certs/math.mahererais.fr/privkey.pem
     networks:
       - app-network
 
